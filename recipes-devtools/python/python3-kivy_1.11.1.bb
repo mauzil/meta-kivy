@@ -1,3 +1,4 @@
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 DESCRIPTION="Kivy"
 SECTION="devel/python"
 LICENSE="Apache-2.0"
@@ -11,8 +12,33 @@ SRC_URI[sha256sum] = "4d0e596f74271e901b551f77661dde238df4765484fce9f5d1c72e8022
 inherit pypi setuptools3
 
 
+_SRC_URI_append = " \
+	file://0001-without-examples.patch \
+"
+
+
+RDEPENDS_${PN} = " \
+	userland \
+"
+
 DEPENDS = " \
-	python3-cython \
+	python3-cython-native \
 	gstreamer1.0 \
 	libsdl2-mixer \
+	libsdl2-image \
+	userland \
 "
+
+
+do_compile_prepend() {
+	# MACHINE_FEATURES: ${MACHINE_FEATURES}
+	export KIVY_CROSS_PLATFORM="rpi"
+}
+
+do_install_prepend() {
+	export KIVY_CROSS_PLATFORM="rpi"
+}
+
+do_install_append() {
+	rm -rf ${D}/usr
+}
