@@ -16,9 +16,8 @@ _SRC_URI_append = " \
 	file://0001-without-examples.patch \
 "
 
-
+	
 RDEPENDS_${PN} = " \
-	userland \
 "
 
 DEPENDS = " \
@@ -26,17 +25,18 @@ DEPENDS = " \
 	gstreamer1.0 \
 	libsdl2-mixer \
 	libsdl2-image \
-	userland \
 "
 
 
 do_compile_prepend() {
 	# MACHINE_FEATURES: ${MACHINE_FEATURES}
-	export KIVY_CROSS_PLATFORM="rpi"
+	# export KIVY_CROSS_PLATFORM="rpi"
+	export KIVY_GRAPHICS="gles"
 }
 
 do_install_prepend() {
-	export KIVY_CROSS_PLATFORM="rpi"
+	# export KIVY_CROSS_PLATFORM="rpi"
+	export KIVY_GRAPHICS="gles"
 }
 
 do_install_append() {
