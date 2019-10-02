@@ -40,5 +40,13 @@ do_install_prepend() {
 }
 
 do_install_append() {
-	rm -rf ${D}/usr
+	rm -rf ${D}/usr/share/kivy-examples
 }
+
+
+
+FILES_${PN} := " \
+	/usr/share \
+	/usr/lib/python3.5/site-packages \
+"
+

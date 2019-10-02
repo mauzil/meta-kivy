@@ -20,6 +20,13 @@ PV = "1.0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
+DEPENDS := " \
+	python3-kivy \
+"
+
+RDEPENDS_${PN} := " \
+	python3-kivy \
+"
 
 inherit setuptools3
 
